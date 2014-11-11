@@ -7,6 +7,7 @@
  */
 
 'use strict';
+var he = require('he');
 
 module.exports = function(grunt) {
 
@@ -15,10 +16,7 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('he', 'Grunt task for the javascript HE html entities handler', function() {
     // Merge task-specific and/or target-specific options with these defaults.
-    var options = this.options({
-      punctuation: '.',
-      separator: ', '
-    });
+    var options = this.options();
 
     // Iterate over all specified file groups.
     this.files.forEach(function(f) {
@@ -34,13 +32,10 @@ module.exports = function(grunt) {
       }).map(function(filepath) {
         // Read file source.
         return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
-
-      // Handle options.
-      src += options.punctuation;
+      }).join(grunt.util.normalizelf(', '));
 
       // Write the destination file.
-      grunt.file.write(f.dest, src);
+      grunt.file.write(f.dest, he.encode(src, options));
 
       // Print a success message.
       grunt.log.writeln('File "' + f.dest + '" created.');

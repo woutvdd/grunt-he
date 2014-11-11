@@ -1,6 +1,7 @@
 # grunt-he
 
-> Grunt task for the javascript HE html entities handler
+> Grunt task for the javascript HE html entities handler. For now, it just encodes a string.
+> It's based on mathiasbynens's excelent [HE](https://github.com/mathiasbynens/)
 
 ## Getting Started
 This plugin requires Grunt `~0.4.5`
@@ -21,6 +22,8 @@ grunt.loadNpmTasks('grunt-he');
 
 ### Overview
 In your project's Gruntfile, add a section named `he` to the data object passed into `grunt.initConfig()`.
+
+The options for this task can be found at [HE's encode text options](https://github.com/mathiasbynens/he#heencodetext-options)
 
 ```js
 grunt.initConfig({
