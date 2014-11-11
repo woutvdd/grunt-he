@@ -39,7 +39,6 @@
     "gruntplugin"
   ],
   "dependencies": {
-    "each-async": "^1.1.0",
     "he": "^0.5.0"
   }
 }
