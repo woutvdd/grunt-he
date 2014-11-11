@@ -23,8 +23,6 @@ grunt.loadNpmTasks('grunt-he');
 ### Overview
 In your project's Gruntfile, add a section named `he` to the data object passed into `grunt.initConfig()`.
 
-The options for this task can be found at [HE's encode text options](https://github.com/mathiasbynens/he#heencodetext-options)
-
 ```js
 grunt.initConfig({
   he: {
@@ -39,48 +37,28 @@ grunt.initConfig({
 ```
 
 ### Options
-
-#### options.separator
-Type: `String`
-Default value: `',  '`
-
-A string value that is used to do something with whatever.
-
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
-
-A string value that is used to do something else with whatever else.
+The options for this task can be found at [HE's encode text options](https://github.com/mathiasbynens/he#heencodetext-options)
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
-
-```js
-grunt.initConfig({
-  he: {
-    options: {},
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
+#### Replace non-entity characters in a HTML file
+Replace all the non-entity characters in all HTML files under directory html/to_validate. The final files will be outputted to html/validated.
 
 ```js
 grunt.initConfig({
   he: {
     options: {
-      separator: ': ',
-      punctuation: ' !!!',
+      'useNamedReferences': true,
+      'allowUnsafeSymbols': true
     },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
+    compileMultiple: {
+      files: [{
+        expand: true,
+        cwd: 'html/to_validate',
+        src: '**/*.html',
+        dest: 'html/validated'
+      }]
+    }
   },
 });
 ```
