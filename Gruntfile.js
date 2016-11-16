@@ -36,6 +36,14 @@ module.exports = function(grunt) {
         files: {
           'tmp/default_options': ['test/fixtures/no_entities']
         }
+      },
+      decode: {
+        options: {
+          decode: true
+        },
+        files: {
+          'tmp/decoded_entities': ['test/fixtures/entities']
+        }
       }
     },
 
@@ -56,7 +64,7 @@ module.exports = function(grunt) {
 
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
-  grunt.registerTask('test', ['clean', 'he', 'nodeunit']);
+  grunt.registerTask('test', ['clean', 'he', 'he:decode', 'nodeunit']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

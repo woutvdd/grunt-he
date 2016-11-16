@@ -35,7 +35,14 @@ module.exports = function(grunt) {
       }).join(grunt.util.normalizelf(', '));
 
       // Write the destination file.
-      grunt.file.write(f.dest, he.encode(src, options));
+      if(options.decode)
+      {
+        grunt.file.write(f.dest, he.decode(src, options));
+      }
+      else
+      {
+        grunt.file.write(f.dest, he.encode(src, options));
+      }
 
       // Print a success message.
       grunt.log.writeln('File "' + f.dest + '" created.');

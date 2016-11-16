@@ -35,5 +35,13 @@ exports.he = {
     test.equal(actual, expected, 'should convert all non-standard characters to HTML entities.');
 
     test.done();
+  },
+  decode: function(test) {
+    test.expect(1);
+    var actual = grunt.file.read('tmp/decoded_entities');
+    var expected = grunt.file.read('test/expected/decoded_entities');
+    test.equal(actual, expected, 'should convert all HTML entities to non-standard characters.');
+
+    test.done();
   }
 };
